@@ -8,18 +8,10 @@ Instructions on how to install and set up the project.
 
 ```sh
 # Example command
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/nitishkumarsonkar/research-assistant-services.git
 cd your-repository
 ```
 
-## Usage
-
-Instructions on how to use the project.
-
-```sh
-# Example command
-python main.py
-```
 
 ## Contributing
 

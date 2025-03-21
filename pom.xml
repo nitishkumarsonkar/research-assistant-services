@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.research</groupId>
-	<artifactId>research-assistant</artifactId>
+	<artifactId>research-assistant-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>research-assistant</name>
+	<name>research-assistant-services</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
