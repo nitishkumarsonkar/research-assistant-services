@@ -1,4 +1,4 @@
-package com.research.assistant;
+package com.research.assistant.dto;
 
 import lombok.Data;
 
@@ -6,5 +6,4 @@ import lombok.Data;
 public class ResearchRequest {
     private String content;
     private String operation;
-
 }

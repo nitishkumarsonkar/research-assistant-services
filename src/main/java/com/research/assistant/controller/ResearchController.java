@@ -1,6 +1,6 @@
 package com.research.assistant.controller;
 
-import com.research.assistant.ResearchRequest;
+import com.research.assistant.dto.ResearchRequest;
 import com.research.assistant.service.ResearchService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,4 +20,11 @@ public class ResearchController {
         String result = researchService.processContent(researchRequest);
         return ResponseEntity.ok(result);
     }
+
+//    // adding a new post call for explain
+//    @PostMapping("/explain")
+//    public ResponseEntity<String> explainContent(@RequestBody ResearchRequest researchRequest) {
+//        String result = researchService.explainContent(researchRequest);
+//        return ResponseEntity.ok(result);
+//    }`
 }

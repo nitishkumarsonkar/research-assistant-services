@@ -1,4 +1,4 @@
-package com.research.assistant;
+package com.research.assistant.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

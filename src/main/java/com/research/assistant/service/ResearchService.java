@@ -1,13 +1,12 @@
 package com.research.assistant.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.research.assistant.GeminiResponse;
-import com.research.assistant.ResearchRequest;
+import com.research.assistant.dto.GeminiResponse;
+import com.research.assistant.dto.ResearchRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,19 +28,6 @@ public class ResearchService {
     public String processContent(ResearchRequest researchRequest) {
         // build the prompt
         String prompt = buildPrompt(researchRequest);
-
-        // creating request body for the API
-//        {
-//            "contents": [
-//            {
-//                "parts": [
-//                {
-//                    "text": "Explain how AI works"
-//                }
-//                ]
-//            }
-//        ]
-//        }
         Map<String, Object> requestBody = Map.of(
                 "contents", List.of(
                         Map.of(
@@ -70,7 +56,7 @@ public class ResearchService {
             // Extract the text from the response body
             GeminiResponse geminiResponse = new ObjectMapper().readValue(responseBody, GeminiResponse.class);
             if(geminiResponse.getCandidates() != null && !geminiResponse.getCandidates().isEmpty()) {
-                return geminiResponse.getCandidates().get(0).getContent().getParts().get(0).getText();
+                return geminiResponse.getCandidates().get(0).getContent().getParts().get(0).getText().replaceAll("(?s)```\\w*\\n?|```", "").trim();
             }
             return "No text from response body";
         }
@@ -81,12 +67,12 @@ public class ResearchService {
 
     // Build the prompt
     private String buildPrompt(ResearchRequest researchRequest) {
-       try {
+        try {
             String prompt = "";
             if (researchRequest.getOperation().equals("summarize")) {
-                prompt = "Summarize the following text: " + researchRequest.getContent();
-            } else if (researchRequest.getOperation().equals("generate")) {
-                prompt = "Generate a text based on the following text: " + researchRequest.getContent();
+                prompt = "Summarize the following text and response should be in html format: " + researchRequest.getContent();
+            } else if (researchRequest.getOperation().equals("explain")) {
+                prompt = "explain in few lines, response should be in html format: " + researchRequest.getContent();
             }
             return prompt;
         }
